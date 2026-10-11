@@ -15,6 +15,7 @@ Le nom du fichier est le **code** de l'ouvrage du catalogue, en minuscules.
 | Fichier | Code | Titre |
 | --- | --- | --- |
 | `ministere.json` | `MINISTERE` | LE MINISTÈRE OU LE SEIGNEUR |
+| `animalite.json` | `ANIMALITE` | L'ANIMALITÉ DE L'ÊTRE HUMAIN |
 
 L'URL consommée par l'application est du type :
 
@@ -27,7 +28,8 @@ https://raw.githubusercontent.com/victordiaz1000/pdf-bym/main/<code>.json
 Produit par `appCodebar/pdf_book_to_json.py` :
 
 ```bash
-python pdf_book_to_json.py "LE-MINISTERE-OU-LE-SEIGNEUR.pdf" -o ministere.json --cover
+python pdf_book_to_json.py "LE-MINISTERE-OU-LE-SEIGNEUR.pdf" ministere.json \
+    --code MINISTERE [--dry-run] [--cover ../bible_app/assets/covers/ministere.jpg]
 ```
 
 ```jsonc
@@ -40,12 +42,14 @@ python pdf_book_to_json.py "LE-MINISTERE-OU-LE-SEIGNEUR.pdf" -o ministere.json -
   "isbn": "…",
   "rights": "…",
   "toc":    [ { "title": "…", "chapter": 3, "level": 1 }, … ],
-  "chapters": [ { "blocks": [ { "type": "p|quote|reference|li|pair|h2|h3|h4", "text": "…" } ] } ]
+  "chapters": [ { "blocks": [ { "type": "p|quote|li|pair|h2|h3|h4", "text": "…" } ] } ]
 }
 ```
 
-`chapters[0]` est le sommaire ; `chapters[1..N]` sont les chapitres. Les notes
-de bas de page voyagent dans les blocs `note` rattachés à leur paragraphe.
+`toc` porte le sommaire (titre, niveau, chapitre) ; `chapters` les chapitres,
+dans l'ordre. Une citation y ajoute `reference`, une ligne du tableau `gloss`,
+et un paragraphe touché par une note de bas de page `textWithNotes` + `notes`
+(invariant : `text[position:position+len(word)] == word`).
 
 ## Ajouter un ouvrage
 
