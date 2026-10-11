@@ -16,6 +16,11 @@ Le nom du fichier est le **code** de l'ouvrage du catalogue, en minuscules.
 | --- | --- | --- |
 | `ministere.json` | `MINISTERE` | LE MINISTÈRE OU LE SEIGNEUR |
 | `animalite.json` | `ANIMALITE` | L'ANIMALITÉ DE L'ÊTRE HUMAIN |
+| `chatiment.json` | `CHATIMENT` | LE CHÂTIMENT |
+| `ombre.json` | `OMBRE` | DE L'OMBRE À LA LUMIÈRE |
+| `croix.json` | `CROIX` | LA CROIX |
+| `nomdupere.json` | `NOMDUPERE` | LE NOM DU PÈRE |
+| `voleurs.json` | `VOLEURS` | LES VOLEURS |
 
 L'URL consommée par l'application est du type :
 
